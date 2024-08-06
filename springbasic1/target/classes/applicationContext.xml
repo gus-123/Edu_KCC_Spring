@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <!-- 주문서 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		
+   <context:component-scan base-package="kosa.di"/>	<!-- kosa.di안에 있는 패키지 객체들 중 @한 객체들을 자동으로 Spring Container에 bean으로 만들어 준다. -->
+		
+   <!-- bean을 하나하나 등록(명시적 객체 생성) -->
+   
+   <!-- WriteService객체를 생성할때 oracleDao 래퍼런스를 주입 -->
+   <!-- setter메서드(이름과 같이 name일치 하면 좋음)를 이용해 mySQLDao 객체를 전달하겠다. -->
+   <!-- 
+   <bean id="oracleDao" class="kosa.di.OracleDao"/> 
+   <bean id="mySQLDao" class="kosa.di.MySQLDao"/> 
+   
+   <bean id="writeService" class="kosa.di.WriteService">
+      <property name="dao" ref="mySQLDao"/>
+      <constructor-arg ref="oracleDao"/>  
+   </bean> 
+    -->
+</beans>
