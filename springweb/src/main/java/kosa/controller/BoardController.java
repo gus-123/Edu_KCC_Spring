@@ -21,7 +21,7 @@ public class BoardController {
 	@Autowired
 	private BoardDao dao;
 	
-	//board_insert => insert_form.jsp Ãâ·Â
+	//board_insert => insert_form.jsp ì¶œë ¥
 	
 	@GetMapping("/board_insert")
 	public String board() {
@@ -31,34 +31,35 @@ public class BoardController {
 	
 //	@PostMapping("/board_insert")
 //	public String board_insert() {
-//		System.out.println("È£Ãâ");
+//		System.out.println("í˜¸ì¶œ");
 //		return "redirect:board_list";
 //	}
 	
-	//±Û µî·Ï¹öÆ° ´©¸¦½Ã
-	//post´Â µ¥ÀÌÅÍ¸¦ ¹Ş±â À§ÇÑ ¹æ¹ı Áß Ä¿¸Çµå °´Ã¼·Î ¹ŞÀ½.
-	//listÀÇ input¾ÈÀÇ name°ú º¯¼ö¸í ÀÏÄ¡ÇØ¾ß µÊ.
+	//ê¸€ ë“±ë¡ë²„íŠ¼ ëˆ„ë¥¼ì‹œ
+	//postëŠ” ë°ì´í„°ë¥¼ ë°›ê¸° ìœ„í•œ ë°©ë²• ì¤‘ ì»¤ë§¨ë“œ ê°ì²´ë¡œ ë°›ìŒ.
+	//listì˜ inputì•ˆì˜ nameê³¼ ë³€ìˆ˜ëª… ì¼ì¹˜í•´ì•¼ ë¨.
 	@PostMapping("/board_insert")
 	public String board_insert(Board board) {
 //		System.out.println(board);
-		dao.insertBoard(board);  //mybatis°¡ ÇÏ´Â ÀÏ
+		dao.insertBoard(board);  //mybatisê°€ í•˜ëŠ” ì¼
 		
-		return "redirect:board_list";  // ±ÛÀ» °­Á¦ÀûÀ¸·Î Áßº¹ÇÑ ±ÛÀ» ¹ß»ı½ÃÅ°Áö ¾Ê±â À§ÇØ ÇÊ¿ä(insert,update,delete½Ã ¸®´ÙÀÌ·º¼Ç) -> dispatcher -> controller¿¡ ÀÖ´ÂÁö È®ÀÎÇÒ²¨ÀÓ
+		return "redirect:board_list";  // ê¸€ì„ ê°•ì œì ìœ¼ë¡œ ì¤‘ë³µí•œ ê¸€ì„ ë°œìƒì‹œí‚¤ì§€ ì•Šê¸° ìœ„í•´ í•„ìš”(insert,update,deleteì‹œ ë¦¬ë‹¤ì´ë ‰ì…˜) -> dispatcher -> controllerì— ìˆëŠ”ì§€ í™•ì¸í• êº¼ì„
 	}
 	
 	@GetMapping("/board_list")
 	public String board_list(Model model) {
 		List<Board> list = dao.listBoard();
-		model.addAttribute("list", list); // list.jspÀÇ ÀÌÀÌÅÛÀÇ list, boardÀÇ list
+		model.addAttribute("list", list); // list.jspì˜ ì´ì´í…œì˜ list, boardì˜ list
 		
-		return "list"; //list.jspÀÇ list
+		return "list"; //list.jspì˜ list
 	}
-	
+
+	// Modelë°©ì‹
 	@GetMapping("/board_detail{seq}")
 	public String board_detail(@PathVariable int seq, Model model) {
 		Board board = dao.detailBoard(seq);
-		model.addAttribute("detail", board); //$ÀÇ ÀÌ¸§
-		return "detail";  //jsp ÀÌ¸§
+		model.addAttribute("detail", board); //$ì˜ ì´ë¦„
+		return "detail";  //jsp ì´ë¦„
 	}
 	
 //	@GetMapping("/board_detail")
@@ -67,7 +68,8 @@ public class BoardController {
 //		model.addAttribute("detail", board);
 //		return "detail";
 //	}
-	
+
+//      ModelAndViewë°©ì‹	
 //	@GetMapping("/board_detail")
 //	public ModelAndView board_detail(@RequestParam int seq) {
 //		ModelAndView mav = new ModelAndView();
@@ -77,7 +79,7 @@ public class BoardController {
 //	    return mav;
 //	}
 	
-	// ±Û ¼öÁ¤
+	// ê¸€ ìˆ˜ì •
 	@GetMapping("/board_update")
 	public String board_update(@RequestParam int seq, Model model) {
 		Board board = dao.detailBoard(seq);
@@ -93,7 +95,7 @@ public class BoardController {
 		return "redirect:board_list";
 	}
 	
-	// ±Û »èÁ¦
+	// ê¸€ ì‚­ì œ
 	@PostMapping("/board_delete")
 	public String delete_board(@RequestParam int seq) {
 		dao.deleteBoard(seq);
